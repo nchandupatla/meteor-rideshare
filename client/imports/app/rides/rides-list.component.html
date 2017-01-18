@@ -1,0 +1,26 @@
+<div>
+  <rides-form style="float: left"></rides-form>
+  <input type="text" #searchtext placeholder="Search by Location">
+  <button type="button" (click)="search(searchtext.value)">Search</button>
+  
+  <login-buttons></login-buttons>
+
+  <h1>Rides:</h1>  <div>{{user | displayName}}</div>
+  <div>
+    <select #sort (change)="changeSortOrder(sort.value)">
+      <option value="1" selected>Ascending</option>
+      <option value="-1">Descending</option>
+    </select>
+  </div>
+
+  <ul>
+    <li *ngFor="let ride of rides | async">
+      <a [routerLink]="['/ride', ride._id]">{{ride.name}}</a>
+      <p>{{ride.description}}</p>
+      <p>{{ride.location}}</p>
+      <button (click)="removeride(ride)">X</button>
+    </li>
+  </ul>
+
+  <pagination-controls (pageChange)="onPageChanged($event)"></pagination-controls>
+</div>
