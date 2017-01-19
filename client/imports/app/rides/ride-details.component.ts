@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Meteor } from 'meteor/meteor';
 import { MeteorObservable } from 'meteor-rxjs';
+import { MouseEvent } from "angular2-google-maps/core";
 
 import 'rxjs/add/operator/map';
 
@@ -10,16 +11,21 @@ import { Rides } from '../../../../both/collections/rides.collection';
 import { Ride } from '../../../../both/models/ride.model';
 
 import template from './ride-details.component.html';
+import style from './ride-details.component.scss';
 
 @Component({
   selector: 'ride-details',
-  template
+  template,
+  styles: [ style ]
 })
 export class RideDetailsComponent implements OnInit, OnDestroy {
   rideId: string;
   paramsSub: Subscription;
   ride: Ride;
   rideSub: Subscription;
+   // Default center Palo Alto coordinates.
+  centerLat: number = 37.4292;
+  centerLng: number = -122.1381;
 
   constructor(
     private route: ActivatedRoute
@@ -59,5 +65,18 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.paramsSub.unsubscribe();
     this.rideSub.unsubscribe();
+  }
+
+   get lat(): number {
+    return this.ride && this.ride.location.lat;
+  }
+ 
+  get lng(): number {
+    return this.ride && this.ride.location.lng;
+  }
+ 
+  mapClicked($event: MouseEvent) {
+    this.ride.location.lat = $event.coords.lat;
+    this.ride.location.lng = $event.coords.lng;
   }
 }

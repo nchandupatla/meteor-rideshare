@@ -33,7 +33,16 @@ export class RidesFormComponent implements OnInit {
     }
 
     if (this.addForm.valid) {
-      Rides.insert(Object.assign({}, this.addForm.value, { owner: Meteor.userId() }));
+
+      Rides.insert({
+        name: this.addForm.value.name,
+        description: this.addForm.value.description,
+        location: {
+          name: this.addForm.value.location
+        },
+        public: this.addForm.value.public,
+        owner: Meteor.userId()
+      });
 
       this.addForm.reset();
     }

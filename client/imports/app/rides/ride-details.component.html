@@ -1,13 +1,43 @@
-<form *ngIf="ride" (submit)="saveRide()">
-  <label>Name</label>
-  <input type="text" [(ngModel)]="ride.name" name="name">
-
-  <label>Description</label>
-  <input type="text" [(ngModel)]="ride.description" name="description">
-
-  <label>Location</label>
-  <input type="text" [(ngModel)]="ride.location" name="location">
-
-  <button type="submit">Save</button>
-  <a [routerLink]="['/']">Cancel</a>
-</form>
+<div class="row ma-ride-details-container">
+  <div class="col-sm-6 col-sm-offset-3">
+    <legend>View and Edit Your Ride Details:</legend>
+    <form class="form-horizontal" *ngIf="ride" (submit)="saveRide()">
+      <div class="form-group">
+        <label>Ride Name</label>
+        <input [disabled]="!isOwner" type="text" [(ngModel)]="ride.name" name="name" class="form-control">
+      </div>
+ 
+      <div class="form-group">
+        <label>Description</label>
+        <input [disabled]="!isOwner" type="text" [(ngModel)]="ride.description" name="description" class="form-control">
+      </div>
+ 
+      <div class="form-group">
+        <label>Location name</label>
+        <input [disabled]="!isOwner" type="text" [(ngModel)]="ride.location.name" name="location" class="form-control">
+      </div>
+ 
+      <div class="form-group">
+        <button [disabled]="!isOwner" type="submit" class="btn btn-primary">Save</button>
+        <a [routerLink]="['/']" class="btn">Back</a>
+      </div>
+    </form>
+    <h3 class="ma-map-title">
+      Click the map to set the ride location
+    </h3>
+ 
+    <div class="angular-google-map-container">
+      <sebm-google-map
+        [latitude]="lat || centerLat"
+        [longitude]="lng || centerLng"
+        [zoom]="8"
+        (mapClick)="mapClicked($event)">
+        <sebm-google-map-marker
+          *ngIf="lat && lng"
+          [latitude]="lat"
+          [longitude]="lng">
+        </sebm-google-map-marker>
+      </sebm-google-map>
+    </div>
+  </div>
+</div>

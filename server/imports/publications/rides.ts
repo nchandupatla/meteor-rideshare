@@ -54,7 +54,7 @@ function buildQuery(rideId?: string, location?: string): Object {
 
   return {
     $and: [{
-        location: searchRegEx
+        'location.name': searchRegEx
       },
       isAvailable
     ]

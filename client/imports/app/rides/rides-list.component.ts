@@ -15,6 +15,7 @@ import { Users } from '../../../../both/collections/users.collection';
 import { User } from '../../../../both/models/user.model';
 
 import template from './rides-list.component.html';
+import style from './rides-list.component.scss';
 
 interface Pagination {
   limit: number;
@@ -27,7 +28,8 @@ interface Options extends Pagination {
 
 @Component({
   selector: 'rides-list',
-  template
+  template,
+  styles: [ style ]
 })
 export class RidesListComponent implements OnInit, OnDestroy {
   rides: Observable<Ride[]>;
@@ -111,6 +113,10 @@ export class RidesListComponent implements OnInit, OnDestroy {
 
   changeSortOrder(nameOrder: string): void {
     this.nameOrder.next(parseInt(nameOrder));
+  }
+
+  isOwner(ride: Ride): boolean {
+    return this.user && this.user._id === ride.owner;
   }
 
   ngOnDestroy() {

@@ -7,7 +7,9 @@ export function loadRides() {
     for (var i = 0; i < 27; i++) {
   Rides.insert({
     name: Fake.sentence(10),
-    location: Fake.sentence(10),
+    location: {
+        name: 'Palo Alto'
+      },
     description: Fake.sentence(10),
     public: true
   });
