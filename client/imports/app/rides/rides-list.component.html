@@ -31,9 +31,9 @@
         <div class="row">
           <div class="col-sm-8">
             <h2 class="ma-ride-name">
-              <a [routerLink]="['/ride', ride._id]">{{ride.name}}</a>
+              <a [routerLink]="['/ride', ride._id]">{{ride.location.name}}</a>
             </h2>
-            @ {{ride.location.name}}
+            @ {{ride.location.name}} on {{ride.date | date:'medium'}}
             <p class="ma-ride-description">
               {{ride.description}}
             </p>

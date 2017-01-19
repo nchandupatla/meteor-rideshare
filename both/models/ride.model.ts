@@ -1,9 +1,9 @@
 import { CollectionObject } from './collection-object.model';
 
 export interface Ride extends CollectionObject {
-  name: string;
   description: string;
   location: Location;
+  date: Date;
   owner?: string;
   public: boolean;
 }

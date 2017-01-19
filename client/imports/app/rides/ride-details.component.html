@@ -3,11 +3,6 @@
     <legend>View and Edit Your Ride Details:</legend>
     <form class="form-horizontal" *ngIf="ride" (submit)="saveRide()">
       <div class="form-group">
-        <label>Ride Name</label>
-        <input [disabled]="!isOwner" type="text" [(ngModel)]="ride.name" name="name" class="form-control">
-      </div>
- 
-      <div class="form-group">
         <label>Description</label>
         <input [disabled]="!isOwner" type="text" [(ngModel)]="ride.description" name="description" class="form-control">
       </div>

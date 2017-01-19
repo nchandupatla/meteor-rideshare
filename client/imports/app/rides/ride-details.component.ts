@@ -55,7 +55,6 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
     
     Rides.update(this.ride._id, {
       $set: {
-        name: this.ride.name,
         description: this.ride.description,
         location: this.ride.location
       }

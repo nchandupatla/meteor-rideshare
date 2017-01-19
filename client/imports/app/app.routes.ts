@@ -6,7 +6,8 @@ import { RideDetailsComponent } from './rides/ride-details.component';
 
 export const routes: Route[] = [
   { path: '', component: RidesListComponent },
-  { path: 'ride/:rideId', component: RideDetailsComponent, canActivate: ['canActivateForLoggedIn'] }
+  { path: 'ride/:rideId', component: RideDetailsComponent }
+  // { path: 'ride/:rideId', component: RideDetailsComponent, canActivate: ['canActivateForLoggedIn'] }
 ];
 
 export const ROUTES_PROVIDERS = [{

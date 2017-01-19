@@ -19,7 +19,6 @@ export class RidesFormComponent implements OnInit {
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      name: ['', Validators.required],
       description: [],
       location: ['', Validators.required],
       public: [false]
@@ -35,13 +34,13 @@ export class RidesFormComponent implements OnInit {
     if (this.addForm.valid) {
 
       Rides.insert({
-        name: this.addForm.value.name,
         description: this.addForm.value.description,
         location: {
           name: this.addForm.value.location
         },
         public: this.addForm.value.public,
-        owner: Meteor.userId()
+        owner: Meteor.userId(),
+        date: new Date()
       });
 
       this.addForm.reset();

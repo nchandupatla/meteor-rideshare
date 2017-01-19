@@ -4,16 +4,16 @@ import { Ride } from '../../../both/models/ride.model';
 export function loadRides() {
   if (Rides.find().cursor.count() === 0) {
 
-    for (var i = 0; i < 27; i++) {
-  Rides.insert({
-    name: Fake.sentence(10),
-    location: {
-        name: 'Palo Alto'
-      },
-    description: Fake.sentence(10),
-    public: true
-  });
-}
+//     for (var i = 0; i < 27; i++) {
+//   Rides.insert({
+//     name: Fake.sentence(10),
+//     location: {
+//         name: 'Palo Alto'
+//       },
+//     description: Fake.sentence(10),
+//     public: true
+//   });
+// }
 
     // const rides: Ride[] = [{
     //   name: 'Dubstep-Free Zone',
