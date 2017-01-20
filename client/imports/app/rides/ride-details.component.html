@@ -1,26 +1,21 @@
 <div class="row ma-ride-details-container">
-  <div class="col-sm-6 col-sm-offset-3">
-    <legend>View and Edit Your Ride Details:</legend>
-    <form class="form-horizontal" *ngIf="ride" (submit)="saveRide()">
-      <div class="form-group">
-        <label>Description</label>
-        <input [disabled]="!isOwner" type="text" [(ngModel)]="ride.description" name="description" class="form-control">
-      </div>
+  <div class="col-sm-6">
+   
+    <form class="form-horizontal" *ngIf="ride">
+       <legend> Trip Information </legend>
+       <p><b>{{ride.from_location.name}} to {{ride.to_location.name}}</b></p>
+       <p>Start Date {{ride.date | date }}  Estimated Start time {{ride.date | date:'shortTime'}}</p>
+ 
+      <button type="button" class="btn btn-success">Contact Me</button>
+
+    
  
       <div class="form-group">
-        <label>Location name</label>
-        <input [disabled]="!isOwner" type="text" [(ngModel)]="ride.location.name" name="location" class="form-control">
-      </div>
- 
-      <div class="form-group">
-        <button [disabled]="!isOwner" type="submit" class="btn btn-primary">Save</button>
         <a [routerLink]="['/']" class="btn">Back</a>
       </div>
     </form>
-    <h3 class="ma-map-title">
-      Click the map to set the ride location
-    </h3>
- 
+    </div>
+    <div class="col-sm-6">
     <div class="angular-google-map-container">
       <sebm-google-map
         [latitude]="lat || centerLat"

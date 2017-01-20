@@ -1,18 +1,93 @@
-<form [formGroup]="addForm" (ngSubmit)="addRide()" class="form-inline">
+<!--<form [formGroup]="addForm" (ngSubmit)="addRide()" class="form-inline">
   <fieldset class="form-group">
+    
+    <label for="location_name">From</label>
+    <input id="location_name" class="form-control" type="text" formControlName="from_location" placeholder="Starting From">
+    
+    <label for="location_name">To</label>
+    <input id="location_name" class="form-control" type="text" formControlName="to_location" placeholder="Arrival To">
+    
     <label for="description">Description</label>
     <input id="description" class="form-control" type="text" formControlName="description" placeholder="Description">
  
-    <label for="location_name">Location</label>
-    <input id="location_name" class="form-control" type="text" formControlName="location" placeholder="Location name">
- 
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" formControlName="public">
-        Public
-      </label>
-    </div>
- 
     <button type="submit" class="btn btn-primary">Add</button>
   </fieldset>
-</form>
+</form>-->
+
+<div class="card">
+  <h3 class="card-header">Post A Trip</h3>
+  <div class="card-block">
+    <h4 class="card-title"></h4>
+
+
+    <form [formGroup]="addForm" (ngSubmit)="addRide()" class="form-inline container">
+      <fieldset class="form-group">
+
+        <div class="form-group row">
+          <label for="example-text-input" class="col-2 col-form-label">From</label>
+          <div class="col-10">
+            <input class="form-control" type="text" formControlName="from_location" placeholder="Starting From">
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <label for="example-search-input" class="col-2 col-form-label">To</label>
+          <div class="col-10">
+            <input class="form-control" type="text" formControlName="to_location" placeholder="Arrival To">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="example-datetime-local-input" class="col-2 col-form-label">Date and time</label>
+          <div class="col-10">
+            <input class="form-control" type="datetime-local" formControlName="date" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="example-number-input" class="col-2 col-form-label">Price</label>
+          <div class="col-10">
+            <input class="form-control" type="number" formControlName="price" value="42" id="example-number-input">
+          </div>
+        </div>
+          <br>
+        <div class="form-group row">
+          <label for="example-number-input" class="col-2 col-form-label">Car Rules</label>
+          <div class="col-10">
+            <div class="form-group has-success">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" formControlName="smoking" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">No Smoking</span>
+              </label>
+            </div>
+            <div class="form-group has-warning">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" formControlName="foodDrinks" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Food and Drinks</span>
+              </label>
+            </div>
+            <div class="form-group has-danger mb-0">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" formControlName="music" class="custom-control-input">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Music</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div class="form-group row">
+          <label class="col-2 col-form-label"></label>
+          <div class="col-10">
+            <button type="submit" class="btn btn-primary">Add</button>
+            <a [routerLink]="['/']" class="btn">Back</a>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>

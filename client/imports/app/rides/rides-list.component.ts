@@ -40,7 +40,7 @@ export class RidesListComponent implements OnInit, OnDestroy {
   optionsSub: Subscription;
   ridesSize: number = 0;
   autorunSub: Subscription;
-  location: Subject<string> = new Subject<string>();
+  from_location: Subject<string> = new Subject<string>();
   user:User;
 
   constructor(
@@ -52,8 +52,8 @@ export class RidesListComponent implements OnInit, OnDestroy {
       this.pageSize,
       this.curPage,
       this.nameOrder,
-      this.location
-    ).subscribe(([pageSize, curPage, nameOrder, location]) => {
+      this.from_location
+    ).subscribe(([pageSize, curPage, nameOrder, from_location]) => {
       const options: Options = {
         limit: pageSize as number,
         skip: ((curPage as number) - 1) * (pageSize as number),
@@ -66,10 +66,10 @@ export class RidesListComponent implements OnInit, OnDestroy {
         this.ridesSub.unsubscribe();
       }
       
-      this.ridesSub = MeteorObservable.subscribe('rides', options, location).subscribe(() => {
+      this.ridesSub = MeteorObservable.subscribe('rides', options, from_location).subscribe(() => {
         this.rides = Rides.find({}, {
           sort: {
-            name: nameOrder
+            from_location: nameOrder
           }
         }).zone();
       });
@@ -82,15 +82,15 @@ export class RidesListComponent implements OnInit, OnDestroy {
 
     this.paginationService.register({
       id: this.paginationService.defaultId,
-      itemsPerPage: 10,
+      itemsPerPage: 5,
       currentPage: 1,
       totalItems: this.ridesSize
     });
 
-    this.pageSize.next(10);
+    this.pageSize.next(5);
     this.curPage.next(1);
     this.nameOrder.next(1);
-    this.location.next('');
+    this.from_location.next('');
 
     this.autorunSub = MeteorObservable.autorun().subscribe(() => {
       this.ridesSize = Counts.get('numberOfRides');
@@ -104,7 +104,7 @@ export class RidesListComponent implements OnInit, OnDestroy {
 
   search(value: string): void {
     this.curPage.next(1);
-    this.location.next(value);
+    this.from_location.next(value);
   }
 
   onPageChanged(page: number): void {

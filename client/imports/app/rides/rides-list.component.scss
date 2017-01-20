@@ -69,50 +69,12 @@
       }
     }
  
-    .ma-rsvp-buttons {
-      input.btn {
-        color: darken($color3, 20%);
-        background: transparent !important;
-        outline: none;
-        padding-left: 0;
-        &:active {
-          box-shadow: none;
-        }
-        &:hover {
-          color: darken($color3, 30%);
-        }
-        &.btn-primary {
-          color: lighten($color3, 10%);
-          border: 0;
-          background: transparent !important;
-        }
-      }
-    }
+
  
-    .ma-rsvp-sum {
-      width: 160px;
-      @media (min-width: 400px) {
-        float: right;
-      }
-      @media (max-width: 400px) {
-        margin: 0 auto;
-      }
+
+  
     }
-    .ma-rsvp-amount {
-      display: inline-block;
-      text-align: center;
-      width: 50px;
-      .ma-amount {
-        font-weight: bold;
-        font-size: 20px;
-      }
-      .ma-rsvp-title {
-        font-size: 11px;
-        color: #aaa;
-        text-transform: uppercase;
-      }
-    }
-  }
+  
 }
  
 .ma-angular-map-col {

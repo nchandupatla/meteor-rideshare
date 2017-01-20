@@ -7,8 +7,8 @@ interface Options {
   [key: string]: any;
 }
 
-Meteor.publish('rides', function(options: Options, location?: string) {
-  const selector = buildQuery.call(this, null, location);
+Meteor.publish('rides', function(options: Options, from_location?: string) {
+  const selector = buildQuery.call(this, null, from_location);
 
   Counts.publish(this, 'numberOfRides', Rides.collection.find(selector), { noReady: true });
 
@@ -20,7 +20,7 @@ Meteor.publish('ride', function(rideId: string) {
 });
 
 
-function buildQuery(rideId?: string, location?: string): Object {
+function buildQuery(rideId?: string, from_location?: string): Object {
   const isAvailable = {
     $or: [{
       // ride is public
@@ -50,11 +50,11 @@ function buildQuery(rideId?: string, location?: string): Object {
     };
   }
 
-  const searchRegEx = { '$regex': '.*' + (location || '') + '.*', '$options': 'i' };
+  const searchRegEx = { '$regex': '.*' + (from_location || '') + '.*', '$options': 'i' };
 
   return {
     $and: [{
-        'location.name': searchRegEx
+        'from_location.name': searchRegEx
       },
       isAvailable
     ]

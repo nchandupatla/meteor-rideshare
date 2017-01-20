@@ -20,8 +20,14 @@ export class RidesFormComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       description: [],
-      location: ['', Validators.required],
-      public: [false]
+      from_location: ['', Validators.required],
+      to_location: ['', Validators.required],
+      price: ['', Validators.required],
+      date: ['', Validators.required],
+      public: [false],
+      smoking: [false],
+      music: [false],
+      foodDrinks: [false]
     });
   }
 
@@ -35,12 +41,22 @@ export class RidesFormComponent implements OnInit {
 
       Rides.insert({
         description: this.addForm.value.description,
-        location: {
-          name: this.addForm.value.location
+        from_location: {
+          name: this.addForm.value.from_location
         },
-        public: this.addForm.value.public,
+        to_location: {
+          name: this.addForm.value.to_location
+        },
+        price:this.addForm.value.price,
+        date:this.addForm.value.date,
+        car_rules: {
+          smoking: this.addForm.value.smoking,
+          music: this.addForm.value.music,
+          foodDrinks: this.addForm.value.foodDrinks
+        },
+        public: true,
         owner: Meteor.userId(),
-        date: new Date()
+       // date: new Date()
       });
 
       this.addForm.reset();

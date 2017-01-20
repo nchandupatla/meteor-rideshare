@@ -53,12 +53,12 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
       return;
     }
     
-    Rides.update(this.ride._id, {
-      $set: {
-        description: this.ride.description,
-        location: this.ride.location
-      }
-    });
+    // Rides.update(this.ride._id, {
+    //   $set: {
+    //     description: this.ride.description,
+    //     location: this.ride.from_location
+    //   }
+    // });
   }
 
   ngOnDestroy() {
@@ -67,15 +67,15 @@ export class RideDetailsComponent implements OnInit, OnDestroy {
   }
 
    get lat(): number {
-    return this.ride && this.ride.location.lat;
+    return this.ride && this.ride.from_location.lat;
   }
  
   get lng(): number {
-    return this.ride && this.ride.location.lng;
+    return this.ride && this.ride.from_location.lng;
   }
  
   mapClicked($event: MouseEvent) {
-    this.ride.location.lat = $event.coords.lat;
-    this.ride.location.lng = $event.coords.lng;
+    this.ride.from_location.lat = $event.coords.lat;
+    this.ride.from_location.lng = $event.coords.lng;
   }
 }
